@@ -14,8 +14,8 @@
     "prettier:fix": "prettier --write \"src/**/*.{js,ts,css,html,json,md}\"",
     "prettier:check": "prettier \"src/**/*.{js,ts,css,html,json,md}\"",
     "prepare": "husky install",
-    "test": "nyc --reporter=text mocha --require ts-node/register src/__test__/**/*.spec.ts ",
-    "cover":"nyc --reporter=lcov --reporter=--lcov-text npm test"
+    "test": "nyc --reporter=text mocha --require ts-node/register src/__test__/**/*.spec.ts --coverage",
+    "cover": "nyc --reporter=lcov --reporter=--lcov-text npm test"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +26,7 @@
     "chai": "^4.4.1",
     "chai-http": "^4.4.0",
     "cors": "^2.8.5",
+    "coveralls": "^3.1.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.1",
     "jsonwebtoken": "^9.0.2",
@@ -82,6 +83,9 @@
   },
   "nyc": {
     "include": "src/",
-    "exclude": ["src/__test__/","src/config/db.config.ts"]
+    "exclude": [
+      "src/__test__/",
+      "src/config/db.config.ts"
+    ]
   }
 }
