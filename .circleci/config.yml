@@ -1,6 +1,8 @@
 # https://circleci.com/docs/collect-test-data/#mochajs
 # https://github.com/codeclimate/test-reporter/issues/342
 version: 2
+orbs:
+  coveralls: coveralls/coveralls@1.0.6
 jobs:
   build:
     docker:
@@ -36,8 +38,9 @@ jobs:
       # Run coverage
       - run:
           name: Run coverage
-          command: npm run cover
+          command: npm run test
           when: always
+
       # Run coverage report for Code Climate
       - run:
           name: Setup Code Climate test-reporter
@@ -58,3 +61,5 @@ jobs:
       - store_artifacts: # upload test coverage as artifact
           path: ./coverage/lcov.info
           prefix: tests
+
+      - coveralls/upload
