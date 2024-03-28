@@ -40,7 +40,9 @@ jobs:
           name: Run coverage
           command: npm run test
           when: always
-
+      - run:
+          name: Upload coverage to Coveralls
+          command: npx coveralls < coverage/lcov.info
       # Run coverage report for Code Climate
       - run:
           name: Setup Code Climate test-reporter
@@ -62,4 +64,4 @@ jobs:
           path: ./coverage/lcov.info
           prefix: tests
 
-      - coveralls/upload
+ 
